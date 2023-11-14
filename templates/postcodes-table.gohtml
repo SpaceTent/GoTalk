@@ -1,0 +1,31 @@
+<div class="row mb-1 mt-1">
+    <div class="col-md-12 text-end">
+        <button class="btn btn-primary" hx-post="?action=previous" hx-target="#postcodesTable" hx-indicator="#spinner">Previous</button>
+        <span class="btn btn-primary">Page: {{ .DisplayPage }} of {{ .DisplayTotal }}</span>
+        <button class="btn btn-primary" hx-post="?action=next" hx-target="#postcodesTable" hx-indicator="#spinner">Next</button>
+    </div>
+</div>
+<input type="hidden" name="CurrentPage" value="{{ .CurrentPage }}">
+
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr class="table-dark">
+        <th>ID</th>
+        <th>Postcode</th>
+        <th>District</th>
+        <th>Ward</th>
+        <th>Constituency</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{ range $p := .Postcodes}}
+        <tr>
+            <td class="text-end"><a hx-get="/postcodes/view/{{ $p.ID}}" data-bs-toggle="modal" data-bs-target="#pcmodal" hx-target="#pcmodal"  class="btn btn-sm btn-primary">{{ $p.ID}}</a></td>
+            <td>{{ $p.Code }}</td>
+            <td>{{ $p.District }}</td>
+            <td>{{ $p.Ward }}</td>
+            <td>{{ $p.Constituency }}</td>
+        </tr>
+    {{ end }}
+    </tbody>
+</table>

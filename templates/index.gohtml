@@ -1,0 +1,24 @@
+{{ template "global/header.gohtml" . }}
+
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="oflinks" aria-labelledby="oflinkslabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="oflinkslabel">Links</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <a target="_new" href="http://localhost:15672">RabbitMQ</a>
+        <a target="_new" href="http://localhost:9090">Prometheus</a>
+        <a target="_new" href="http://localhost:3000">Grafana</a>
+    </div>
+</div>
+
+<div class="container">
+    <h1>GoTalk</h1>
+
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#oflinks" aria-controls="oflinks">Links</button>
+    <a href="/postcodes" class="btn btn-primary">Postcodes</a>
+
+</div>
+
+{{ template "global/footer.gohtml" . }}
