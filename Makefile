@@ -44,8 +44,6 @@ dockerbuild:
 dockerrun:
 	@docker run -p 8080:8080 -e DSN=$(MIGRATE_DSN) $(PROJECT):$(VERSION)
 
-
-
 dockerup:
 	@docker-compose -f docker/docker-compose.yml up -d
 
