@@ -8,3 +8,5 @@ This code is not production ready and is only for demo purposes.
 
 ```make watch
 ```
+
+for more information, please see the [Makefile](Makefile)
