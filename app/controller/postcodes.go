@@ -61,8 +61,10 @@ func Postcodes(w http.ResponseWriter, r *http.Request) {
     l.With("TotalRecords", TotalRecords, "TotalPage", TotalPages, "CurrentPage", CurrentPage, "Search", Search).Info("Postcodes Search")
     
     if r.Method == "POST" {
+        metrics.LogEventCounter("Postcode", "Render Table")
         web.Render(w, r, pageData, "postcodes-table.gohtml")
     } else {
+        metrics.LogEventCounter("Postcode", "Render Full Page")
         web.Render(w, r, pageData, "postcodes-index.gohtml")
     }
 }

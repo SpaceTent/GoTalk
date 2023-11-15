@@ -13,6 +13,7 @@ test: fmt
 
 stress:
 	@ab -n 10000 -c 100 http://localhost:8080/
+	@ab -n 100 -c 5 http://localhost:8080/postcodes
 
 fmt:
 	@go mod tidy
