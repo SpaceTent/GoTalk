@@ -63,6 +63,7 @@ func (A *App) Start() {
     R.Get("/postcodes", controller.Postcodes)
     R.Post("/postcodes", controller.Postcodes)
     R.Get("/postcodes/view/{id:[0-9]+}", controller.PostcodesView)
+    R.Get("/postcodes/dog", controller.PostcodesDog)
     
     R.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir(environment.GetEnvString("TEMPLATE_PREFIX", "")+"templates/static"))))
     

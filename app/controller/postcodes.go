@@ -2,6 +2,7 @@ package controller
 
 import (
     l "log/slog"
+    "math/rand"
     "net/http"
     "strconv"
     "time"
@@ -36,6 +37,7 @@ func Postcodes(w http.ResponseWriter, r *http.Request) {
     
     if params.Get("action") == "next" {
         CurrentPage++
+        w.Header().Set("HX-Trigger", "newDog")
         if CurrentPage > TotalPages {
             CurrentPage = TotalPages
         }
@@ -77,4 +79,15 @@ func PostcodesView(w http.ResponseWriter, r *http.Request) {
     pageData["Postcode"] = postcode.GetByID(ID)
     
     web.Render(w, r, pageData, "postcodes-modal.gohtml")
+}
+
+func PostcodesDog(w http.ResponseWriter, r *http.Request) {
+    
+    tnow := time.Now()
+    defer metrics.Log("Controller", "PostcodesDog", tnow)
+    
+    pageData := make(map[string]any)
+    pageData["dogRand"] = 200 + rand.Intn(50)
+    
+    web.Render(w, r, pageData, "postcodes-dog.gohtml")
 }
