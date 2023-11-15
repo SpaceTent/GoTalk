@@ -1,4 +1,4 @@
-PROJECT := GoTalk
+PROJECT := gotalk
 VERSION := $(shell git describe --tag --abbrev=0)
 NEXT_VERSION:=$(shell git describe --tags --abbrev=0 | awk -F . '{OFS="."; $$NF+=1; print}')
 SHA1 := $(shell git rev-parse HEAD)
@@ -38,9 +38,12 @@ commitpush: fmt
 	@git push --all
 	@git push --tags
 
+dockerbuild:
+	@docker build -t $(PROJECT):$(VERSION) .
 
-echo:
-	@echo $(MIGRATE_DSN)
+dockerrun:
+	@docker run -p 8080:8080 -e DSN=$(MIGRATE_DSN) $(PROJECT):$(VERSION)
+
 
 
 dockerup:
