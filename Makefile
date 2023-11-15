@@ -17,7 +17,6 @@ stress:
 
 fmt:
 	@go mod tidy
-	@go fmt ./...
 	@goimports -w .
 	@gofmt -w -s .
 	@go clean ./...
@@ -28,7 +27,7 @@ watch: fmt
 run: fmt
 	@go run .
 
-build:
+build: fmt
 	@go generate
 	@go build -o bin/$(PROJECT) -ldflags "-X main.GITCOMMIT=$(SHA1) -X main.VERSION=$(VERSION) -X main.BUILDTIME=$(NOW)"
 
